@@ -13,21 +13,39 @@
 
 
 <script>
-import { userMixin } from '../mixins/mixin_users.js';
+import router from '../router';
+import { deleteUser, getUserDetails } from '../utils/user_utils.js';
 
 export default {
   name: 'userDetails',
-  mixins: [userMixin],
   data() {
     return {
       user: []
     };
   },
   mounted() {
-    this.getUserDetails();
+    getUserDetails(this.$route.params.id)
+        .then(user => {
+          this.user = user; // Assigner les détails de l'utilisateur à une propriété du composant
+        })
+        .catch(error => {
+          console.error("Erreur lors de la récupération des détails de l'utilisateur:", error);
+          // Gérer l'erreur de récupération des détails de l'utilisateur
+        });
   },
   methods: {
-    
+    deleteUser(userId) {
+      deleteUser(userId)
+        .then(() => {
+          console.log('Utilisateur supprimé avec succès');
+          // Gérer la suppression réussie
+          router.push('/user-list');
+        })
+        .catch(error => {
+          console.error("Erreur lors de la suppression de l'utilisateur:", error);
+          // Gérer l'erreur de suppression de l'utilisateur
+        });
+    },
   }
 };
 </script>

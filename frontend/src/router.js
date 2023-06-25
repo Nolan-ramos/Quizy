@@ -5,7 +5,7 @@ import userCreate from './views/userCreate.vue';
 
 const routes = [
   { path: '/user-list', component: usersList, name: 'usersList' },
-  { path: '/user-details/:id', component: userDetails, name: 'userDetails' },
+  { path: '/user-details/:userId', component: userDetails, name: 'userDetails' },
   { path: '/user-create', component: userCreate, name: 'userCreate' }
 ];
 

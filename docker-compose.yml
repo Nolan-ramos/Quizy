@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+  quizybackend:  
+    build: ./backend
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - 3000:3000
+    volumes:
+      - ./backend:/app
+    networks:
+      - quizy_network
+
+  quizyfrontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - quizybackend
+    volumes:
+      - ./frontend:/app
+    networks:
+      - quizy_network
+
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: quizy
+      MARIADB_USER: quizy
+      MARIADB_PASSWORD: quizy
+    volumes:
+      - database_volume:/var/lib/mysql
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - quizy_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - 4000:80
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: root
+      UPLOAD_LIMIT: 20M
+    networks:
+      - quizy_network
+    
+
+volumes:
+  database_volume:
+
+networks:
+  quizy_network:

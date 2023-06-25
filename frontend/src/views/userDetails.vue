@@ -14,7 +14,6 @@
 
 <script>
 import router from '../router';
-import { deleteUser, getUserDetails } from '../utils/user_utils.js';
 
 export default {
   name: 'userDetails',
@@ -24,26 +23,26 @@ export default {
     };
   },
   mounted() {
-    getUserDetails(this.$route.params.id)
-        .then(user => {
-          this.user = user; // Assigner les détails de l'utilisateur à une propriété du composant
-        })
-        .catch(error => {
-          console.error("Erreur lors de la récupération des détails de l'utilisateur:", error);
-          // Gérer l'erreur de récupération des détails de l'utilisateur
-        });
+    this.getUserDetails(this.$route.params.userId);
   },
   methods: {
+    getUserDetails(userId){
+      this.$userFunctions.getUserDetails(userId)
+        .then(user => {
+          this.user = user;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la récupération de l\'utilisateurs:', error);
+        });
+    },
     deleteUser(userId) {
-      deleteUser(userId)
+      this.$userFunctions.deleteUser(userId)
         .then(() => {
           console.log('Utilisateur supprimé avec succès');
-          // Gérer la suppression réussie
           router.push('/user-list');
         })
         .catch(error => {
-          console.error("Erreur lors de la suppression de l'utilisateur:", error);
-          // Gérer l'erreur de suppression de l'utilisateur
+          console.error('Erreur lors de la suppression de l\'utilisateur:', error);
         });
     },
   }

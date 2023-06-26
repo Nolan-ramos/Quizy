@@ -27,6 +27,17 @@ export const userFunctions = {
             throw error;
           });
     },
+    createUser(email, password) {
+      return axios.post('http://localhost:3000/api/users/', { email, password })
+        .then(response => {
+          console.log('Utilisateur créé avec succès:', response.data);
+          return response.data;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la création de l\'utilisateur:', error);
+          throw error;
+        });
+    },
     getUserDetails(userId) {
         return axios.get('http://localhost:3000/api/users/' + userId)
           .then(response => {

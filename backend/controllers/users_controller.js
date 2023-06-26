@@ -39,6 +39,19 @@ const UserController = {
       res.json(result);
     });
   },
+
+  createUser: function(req, res) {
+    const { email, password } = req.body;
+    UserModel.createUser(email, password, (err, result) => {
+      if (err) {
+        console.error('Erreur lors de la création de l\'utilisateur :', err);
+        res.status(500).send('Erreur lors de la création de l\'utilisateur');
+        return;
+      }
+      res.json(result);
+    });
+  },
+  
 };
 
 module.exports = UserController;

@@ -2,9 +2,11 @@ FROM node:lts-alpine3.18
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
-RUN npm install && npm install --save-dev @vue/cli-service
+RUN npm install
+
+COPY . .
 
 VOLUME /app
 

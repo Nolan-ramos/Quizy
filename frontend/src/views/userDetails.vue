@@ -5,6 +5,7 @@
       <li v-for="user in user" :key="user.id">
         <span>id = {{ user.id_user }}</span>
         <span>email = {{ user.email_user }}</span>
+        <router-link :to="'/user-edit/' + user.id_user">Edit</router-link>
         <button @click="deleteUser(user.id_user)">Supprimer</button>
       </li>
     </ul>

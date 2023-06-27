@@ -17,6 +17,16 @@ export const userFunctions = {
             throw error;
           });
     },
+    getUserDetails(userId) {
+      return axios.get('http://localhost:3000/api/users/' + userId)
+        .then(response => {
+          return response.data;
+        })
+        .catch(error => {
+          console.error("Erreur lors de la récupération des détails de l'utilisateur:", error);
+          throw error;
+        });
+    },
     deleteUser(userId) {
         return axios.delete('http://localhost:3000/api/users/' + userId)
           .then(() => {
@@ -28,7 +38,7 @@ export const userFunctions = {
           });
     },
     createUser(email, password) {
-      return axios.post('http://localhost:3000/api/users/', { email, password })
+      return axios.post('http://localhost:3000/api/users', { email, password })
         .then(response => {
           console.log('Utilisateur créé avec succès:', response.data);
           return response.data;
@@ -38,15 +48,16 @@ export const userFunctions = {
           throw error;
         });
     },
-    getUserDetails(userId) {
-        return axios.get('http://localhost:3000/api/users/' + userId)
-          .then(response => {
-            return response.data;
-          })
-          .catch(error => {
-            console.error("Erreur lors de la récupération des détails de l'utilisateur:", error);
-            throw error;
-          });
-    }      
+    updateUser(userId, email, password) {
+      return axios.put('http://localhost:3000/api/users/' + userId, { email, password })
+        .then(response => {
+          console.log('Utilisateur mis à jour avec succès:', response.data);
+          return response.data;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la mise à jour de l\'utilisateur:', error);
+          throw error;
+        });
+    }
 };
   

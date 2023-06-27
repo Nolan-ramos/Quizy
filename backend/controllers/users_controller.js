@@ -52,6 +52,19 @@ const UserController = {
     });
   },
   
+  updateUser: function(req, res) {
+    const userId = req.params.id;
+    const { email, password } = req.body;
+    UserModel.updateUser(userId, email, password, (err, result) => {
+      if (err) {
+        console.error('Erreur lors de la mise à jour de l\'utilisateur :', err);
+        res.status(500).send('Erreur lors de la mise à jour de l\'utilisateur');
+        return;
+      }
+      res.json(result);
+    });
+  }
+  
 };
 
 module.exports = UserController;

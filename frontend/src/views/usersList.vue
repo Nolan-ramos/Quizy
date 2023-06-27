@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>USER LIST</span>
+    <span>USER LISTE</span>
     <ul>
       <li v-for="user in users" :key="user.id">
         <span>id = {{ user.id_user }}</span>

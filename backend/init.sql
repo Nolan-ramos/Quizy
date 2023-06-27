@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
   password_user VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS product (
+CREATE TABLE IF NOT EXISTS products (
   id_product INT AUTO_INCREMENT PRIMARY KEY,
   name_product VARCHAR(255) NOT NULL,
   price_product VARCHAR(255) NOT NULL
@@ -25,6 +25,17 @@ VALUES
   ('user7@example.com', 'password7'),
   ('user8@example.com', 'password8'),
   ('user9@example.com', 'password9'),
-  ('user10@example.com', 'password10'),
-  ('user11@example.com', 'password11'),
-  ('user12@example.com', 'password12');
+  ('user10@example.com', 'password10');
+
+INSERT INTO products (name_product, price_product)
+VALUES
+  ('Produit 1', '9.99'),
+  ('Produit 2', '19.99'),
+  ('Produit 3', '14.99'),
+  ('Produit 4', '24.99'),
+  ('Produit 5', '29.99'),
+  ('Produit 6', '12.99'),
+  ('Produit 7', '17.99'),
+  ('Produit 8', '7.99'),
+  ('Produit 9', '22.99'),
+  ('Produit 10', '11.99');

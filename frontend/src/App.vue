@@ -2,7 +2,8 @@
   <div>
     <nav>
       <router-link to="/user-list">Users liste</router-link>
-      <router-link to="/user-create">Users Create</router-link>
+      <router-link to="/user-create">Users create</router-link>
+      <router-link to="/product-page">Product page</router-link>
     </nav>
     <router-view></router-view>
   </div>

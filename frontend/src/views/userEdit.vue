@@ -1,8 +1,8 @@
 <template>
     <div>
       <span>EDIT USER</span>
-      <input v-model="email" type="email" :placeholder="this.email" required>
-      <input v-model="password" type="password" :placeholder="this.password" required>
+      <input v-model="email" type="email" placeholder="email" required>
+      <input v-model="password" type="password" placeholder="password" required>
       <button @click="updateUser">Modifier utilisateur</button>
     </div>
   </template>

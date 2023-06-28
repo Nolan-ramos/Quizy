@@ -7,11 +7,13 @@
             <span>name = {{ product.name_product }}</span>
             <span>price = {{ product.price_product }}</span>
             <button @click="deleteProduct(product.id_product)">Supprimer</button>
-            <div class="modal--produit">
+            <button @click="editProduct(product)">Modifier</button>
+            <div v-if="product.editingProduct" class="modal--produit">
                 <div class="modal--produit--content">
-                    <input v-model="name" type="name" placeholder="name" required>
-                    <input v-model="price" type="price" placeholder="price" required>
-                    <button @click="updateProduct">Modifier le produit</button>
+                    <input v-model="product.name_product" type="name" placeholder="name" required>
+                    <input v-model="product.price_product" type="price" placeholder="price" required>
+                    <button @click="saveProduct(product)">Enregistrer</button>
+                    <button @click="cancelEditProduct(product)">Annuler</button>
                 </div>
             </div>
         </li>
@@ -26,8 +28,6 @@ export default {
     data() {
       return {
         products: [],
-        name: '',
-        price: ''
       };
     },
     mounted() {
@@ -54,6 +54,25 @@ export default {
                     console.error('Erreur lors de la suppression du produit :', error);
                 });
         },
+        editProduct(product) {
+            product.editingProduct = true;
+        },
+        saveProduct(product) {
+            console.log(product)
+            this.$productFunctions.updateProduct(product.id_product, product.name_product, product.price_product)
+                .then(() => {
+                    console.log('produit mis à jour avec succès');
+                    this.getProducts();
+                    product.editingProduct = false;
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la mise à jour du produit:', error);
+                });
+        },
+        cancelEditProduct(product) {
+            this.getProducts();
+            product.editingProduct = false;
+        },
     }
 };
 </script>
@@ -68,7 +87,7 @@ export default {
         left:0;
         width:100%;
         height:100vh;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.8);
         &--content{
             width:500px;
             height:400px;

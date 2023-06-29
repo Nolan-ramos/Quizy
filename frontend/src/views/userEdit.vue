@@ -1,9 +1,12 @@
 <template>
-    <div>
-      <span>EDIT USER</span>
-      <input v-model="email" type="email" placeholder="email" required>
-      <input v-model="password" type="password" placeholder="password" required>
-      <button @click="updateUser">Modifier utilisateur</button>
+    <div class="view">
+      <span class="view__title">EDIT USER PAGE</span>
+      <div class="form">
+        <span>EDIT USER</span>
+        <input class="input" v-model="email" type="email" placeholder="email" required>
+        <input class="input" v-model="password" type="password" placeholder="password" required>
+        <button class="button" @click="updateUser">Modifier utilisateur</button>
+      </div>
     </div>
   </template>
   

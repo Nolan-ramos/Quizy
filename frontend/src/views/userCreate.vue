@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <span>USER CREATE</span>
-    <input v-model="email" type="email" placeholder="Email" required>
-    <input v-model="password" type="password" placeholder="Password" required>
-    <button @click="createUser">Créer utilisateur</button>
+  <div class="view">
+    <span class="view__title">CREATE USER PAGE</span>
+    <div class="form">
+      <span>USER CREATE</span>
+      <input class="input" v-model="email" type="email" placeholder="Email" required>
+      <input class="input" v-model="password" type="password" placeholder="Password" required>
+      <button class="button" @click="createUser">Créer utilisateur</button>
+    </div>
   </div>
 </template>
 

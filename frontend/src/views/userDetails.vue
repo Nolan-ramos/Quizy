@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <span>USERR DETAIL</span>
+  <div class="view">
+    <span class="view__title">USER DETAIL PAGE</span>
     <ul>
       <li v-for="user in user" :key="user.id">
         <span>id = {{ user.id_user }}</span>

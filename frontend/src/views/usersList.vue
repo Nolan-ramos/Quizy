@@ -1,13 +1,19 @@
 <template>
-  <div>
-    <span>USER LISTE</span>
-    <ul>
-      <li v-for="user in users" :key="user.id">
-        <span>id = {{ user.id_user }}</span>
-        <span>email = {{ user.email_user }}</span>
-        <router-link :to="'/user-details/' + user.id_user">Details</router-link>
-        <router-link :to="'/user-edit/' + user.id_user">Edit</router-link>
-        <button @click="deleteUser(user.id_user)">Supprimer</button>
+  <div class="view">
+    <span class="view__title">USER LISTE PAGE</span>
+    <ul class="element_list">
+      <li class="element" v-for="user in users" :key="user.id">
+        <div class="element_infos">
+          <span>id = {{ user.id_user }}</span>
+          <span>email = {{ user.email_user }}</span>
+        </div>
+        <div class="element_link">
+          <router-link class="link" :to="'/user-details/' + user.id_user">Details</router-link>
+          <router-link class="link" :to="'/user-edit/' + user.id_user">Modifier</router-link>
+        </div>
+        <div class="element_buttons">
+          <button class="button button_delete_user" @click="deleteUser(user.id_user)">Supprimer</button>
+        </div>
       </li>
     </ul>
   </div>
@@ -54,5 +60,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .button_delete_user{
+    width:100%;
+  }
 </style>
